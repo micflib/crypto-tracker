@@ -1,12 +1,14 @@
 package com.bfwg;
 
-import com.bfwg.model.Authority;
-import com.bfwg.model.User;
-import com.bfwg.model.UserRoleName;
-import com.bfwg.repository.UserRepository;
-import com.bfwg.security.auth.AnonAuthentication;
-import com.bfwg.security.auth.TokenBasedAuthentication;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.glovo.Application;
+import com.glovo.model.Authority;
+import com.glovo.model.User;
+import com.glovo.model.UserRoleName;
+import com.glovo.repository.UserRepository;
+import com.glovo.security.auth.AnonAuthentication;
+import com.glovo.security.auth.TokenBasedAuthentication;
+
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 

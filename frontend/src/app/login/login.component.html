@@ -3,16 +3,14 @@
     <mat-card elevation="5" fxFlex>
 
       <mat-card-subtitle>
-        <h2>Angular Spring Starter</h2>
+        <h2>Welcome to</h2>
       </mat-card-subtitle>
-
       <mat-card-title>
-        <h2>{{title}}</h2>
+        <!-- <h2>{{title}}</h2> -->
+        <h3>CRYPTO TRACKER</h3>
       </mat-card-title>
-
       <mat-card-content>
-
-        <p [class]="notification.msgType" *ngIf="notification">{{notification.msgBody}}</p>
+        <!-- <p [class]="notification.msgType" *ngIf="notification">{{notification.msgBody}}</p>
 
         <form *ngIf="!submitted" [formGroup]="form" (ngSubmit)="onSubmit()" #loginForm="ngForm">
           <mat-input-container>
@@ -28,13 +26,22 @@
           <button matTooltip="Reset password if someone has changed it already!" (click)="onResetCredentials()" mat-raised-button color="accent">Reset Credentials</button>
         </div>
 
-        <mat-spinner *ngIf="submitted" mode="indeterminate"></mat-spinner>
+        <mat-spinner *ngIf="submitted" mode="indeterminate"></mat-spinner> -->
         <br>
-        <hr>
+        <p><i>To start the process, please pick a product:</i></p>
+        <!-- <p><i>Please choose</i></p> -->
+        <br>
+        <form *ngIf="!submitted" [formGroup]="form" (ngSubmit)="onSubmit()" #loginForm="ngForm">
+          <mat-input-container>
+            <!-- <input matInput formControlName="password" required type="password" placeholder="PRODUCT"> -->
 
-        <p><i>Created by <a href="https://github.com/bfwg">Fan Jin</a></i></p>
-        <p><i>Click below to go to repository</i></p>
-        <button (click)="repository()" mat-raised-button color="accent">GitHub Repository</button>
+            <mat-select placeholder="PRODUCT" required [formControl]="toppings" multiple disableRipple >
+                <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>
+            </mat-select>
+
+          </mat-input-container>
+          <button type="submit" mat-raised-button color="primary">Login</button>
+        </form>
 
       </mat-card-content>
 

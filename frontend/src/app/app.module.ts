@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, APP_INITIALIZER} from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatSelectModule } from '@angular/material/select';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 // material
@@ -67,6 +68,7 @@ export function initUserFactory(userService: UserService) {
     BrowserAnimationsModule,
     BrowserModule,
     FormsModule,
+    MatSelectModule,
     ReactiveFormsModule,
     HttpModule,
     HttpClientModule,

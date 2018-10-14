@@ -4,6 +4,7 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.AccessDeniedException;
 import com.bfwg.AbstractTest;
+import com.glovo.service.UserService;
 
 /**
  * Created by fan.jin on 2017-04-04.

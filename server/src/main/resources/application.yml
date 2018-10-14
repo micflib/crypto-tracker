@@ -1,6 +1,8 @@
 app:
   name: anuglar2-spring-jwt
-
+  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRldkBnbG92b2FwcC5jb20iLCJpZCI6IjVhNTcyZGEyNTM4OWMzNzZiZWZlNjY1NCIsImlhdCI6MTUxNTY2MjgyMn0.a6homMOumqLBxwfX9nOwbBaxmSx-srkS8dISSPCPPYE
+  url: https://api.moneeda.com/api/exchanges/
+  
 jwt:
   header: Authorization
   expires_in: 600 # 10 minutes
@@ -10,4 +12,4 @@ jwt:
 logging:
   level:
     org.springframework.web: ERROR
-    com.bfwg: DEBUG
+    com.glovo: ERROR

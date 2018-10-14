@@ -8,6 +8,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.springframework.test.util.ReflectionTestUtils;
 
+import com.glovo.security.TokenHelper;
+
 /**
  * Created by fan.jin on 2017-01-08.
  */
