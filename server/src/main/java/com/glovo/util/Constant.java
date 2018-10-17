@@ -8,7 +8,7 @@ public class Constant {
 		public static final String TOKEN="${app.token}";
 		public static final String URL="${app.url}";
 		public static final String PRODUCTS="/products";
-		public static final String TICKER="/ticker";
+		public static final String TICKER="/ticker?product=";
 	}
 	
 	public static final class Exchange {
