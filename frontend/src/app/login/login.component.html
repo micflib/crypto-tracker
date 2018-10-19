@@ -35,16 +35,18 @@
           <mat-input-container>
             <!-- <input matInput formControlName="password" required type="password" placeholder="PRODUCT"> -->
 
-            <mat-select placeholder="PRODUCT" required [formControl]="toppings" multiple disableRipple >
+            <mat-select placeholder="PRODUCT" required [formControl]="toppings" disableRipple >
                 <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>
             </mat-select>
 
           </mat-input-container>
-          <button type="submit" mat-raised-button color="primary">Login</button>
         </form>
-
+        
+        <div *ngIf="!submitted" >
+          <button type="submit" (click)="onSubmit()" mat-raised-button color="primary">Submit</button>
+        </div>
+         <mat-spinner *ngIf="submitted" mode="indeterminate"></mat-spinner> 
       </mat-card-content>
-
     </mat-card>
-
+    
 </div>

@@ -29,6 +29,11 @@ export const routes: Routes = [
     canActivate: [GuestGuard]
   },
   {
+    path: ':product',
+    component: HomeComponent,
+    pathMatch: 'full'
+  },
+  {
     path: 'change-password',
     component: ChangePasswordComponent,
     canActivate: [LoginGuard]

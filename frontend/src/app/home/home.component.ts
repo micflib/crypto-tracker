@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 import {
   FooService,
   ConfigService,
-  UserService
+  UserService,
+  ApiService,
 } from '../service';
 
 @Component({
@@ -18,10 +20,19 @@ export class HomeComponent implements OnInit {
   constructor(
     private config: ConfigService,
     private fooService: FooService,
-    private userService: UserService
+    private userService: UserService,
+    private apiService: ApiService,
+    private router: Router,
+    private route: ActivatedRoute,
   ) { }
 
   ngOnInit() {
+    return this.apiService.get(this.config.products_url+this.route.snapshot.paramMap.get("product")+"/prices")
+    .subscribe(data => {
+      alert(data);
+    },
+    error => {
+    });
   }
 
   makeRequest(path) {
