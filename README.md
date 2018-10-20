@@ -21,7 +21,7 @@ For more detailed configuration/documentation, please check out the frontend and
 ```
 # clone repo
 # --depth 1 removes all but one .git commit history
-git clone --depth 1 https://github.com/bfwg/angular-spring-starter.git
+git clone --depth 1 https://github.com/micflib/crypto-tracker.git
 
 # change directory to the repo's frontend folder
 cd ../frontend
@@ -52,7 +52,7 @@ mvn spring-boot:run
 ```
 # clone repo
 # --depth 1 removes all but one .git commit history
-git clone --depth 1 https://github.com/bfwg/angular-spring-starter.git
+git clone --depth 1 https://github.com/micflib/crypto-tracker.git
 
 # change directory to the repo's frontend folder
 cd ../frontend
@@ -76,3 +76,6 @@ mvn spring-boot:run
 # the fronend angular app will be running on port 4200
 # the spring-boot server will be running on port 8080
 ```
+
+
+####Disclaimer: I do not own the basecode. Basecode copied from spring boot starter-package (with angular)
