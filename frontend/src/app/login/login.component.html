@@ -1,52 +1,63 @@
 <div class="content" fxLayout="row" fxLayoutAlign="center">
+  <mat-card elevation="5" fxFlex *ngIf="!submitted">
+    <mat-card-subtitle>
+      <h2>Welcome to</h2>
+    </mat-card-subtitle>
+    <mat-card-title>
+      <h3>CRYPTO TRACKER</h3>
+    </mat-card-title>
+    <mat-card-content>
+      <br>
+      <p><i *ngIf="!showLoading">To start the process, please pick a product:</i></p>
+      <br>
+      <form *ngIf="!showLoading" [formGroup]="form" (ngSubmit)="onSubmit()" #loginForm="ngForm">
+        <mat-input-container>
+          <mat-select placeholder="PRODUCT" required [formControl]="toppings" disableRipple>
+            <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>
+          </mat-select>
+        </mat-input-container>
+      </form>
+      <div *ngIf="!showLoading">
+        <button type="submit" (click)="onSubmit()" mat-raised-button color="primary">Submit</button>
+      </div>
+      <mat-spinner *ngIf="showLoading" mode="indeterminate"></mat-spinner>
+      <p [class]="notification.msgType" *ngIf="notification">{{notification.msgBody}}</p>
+    </mat-card-content>
+  </mat-card>
 
-    <mat-card elevation="5" fxFlex>
-
-      <mat-card-subtitle>
-        <h2>Welcome to</h2>
-      </mat-card-subtitle>
-      <mat-card-title>
-        <!-- <h2>{{title}}</h2> -->
-        <h3>CRYPTO TRACKER</h3>
-      </mat-card-title>
-      <mat-card-content>
-        <!-- <p [class]="notification.msgType" *ngIf="notification">{{notification.msgBody}}</p>
-
-        <form *ngIf="!submitted" [formGroup]="form" (ngSubmit)="onSubmit()" #loginForm="ngForm">
-          <mat-input-container>
-            <input matInput formControlName="username" required placeholder="user/admin">
-          </mat-input-container>
-          <mat-input-container>
-            <input matInput formControlName="password" required type="password" placeholder="123">
-          </mat-input-container>
-          <button type="submit" [disabled]="!loginForm.form.valid" mat-raised-button color="primary">Login</button>
-        </form>
-        <br>
-        <div *ngIf="!submitted" >
-          <button matTooltip="Reset password if someone has changed it already!" (click)="onResetCredentials()" mat-raised-button color="accent">Reset Credentials</button>
-        </div>
-
-        <mat-spinner *ngIf="submitted" mode="indeterminate"></mat-spinner> -->
-        <br>
-        <p><i>To start the process, please pick a product:</i></p>
-        <!-- <p><i>Please choose</i></p> -->
-        <br>
-        <form *ngIf="!submitted" [formGroup]="form" (ngSubmit)="onSubmit()" #loginForm="ngForm">
-          <mat-input-container>
-            <!-- <input matInput formControlName="password" required type="password" placeholder="PRODUCT"> -->
-
-            <mat-select placeholder="PRODUCT" required [formControl]="toppings" disableRipple >
-                <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>
-            </mat-select>
-
-          </mat-input-container>
-        </form>
-        
-        <div *ngIf="!submitted" >
-          <button type="submit" (click)="onSubmit()" mat-raised-button color="primary">Submit</button>
-        </div>
-         <mat-spinner *ngIf="submitted" mode="indeterminate"></mat-spinner> 
-      </mat-card-content>
-    </mat-card>
-    
+  <mat-card elevation="5" fxFlex *ngIf="submitted">
+    <mat-card-subtitle>
+      <h2>{{product}}</h2>
+    </mat-card-subtitle>
+    <mat-card-title><b>
+        <h1 [class]="pprice.class.bfx">BFX</h1>
+      </b></mat-card-title>
+    <div>
+      <h2 [class]="pprice.class.bfx">{{BFX}}</h2>
+    </div>
+  </mat-card>
+  <hr *ngIf="submitted">
+  <mat-card elevation="5" fxFlex *ngIf="submitted">
+    <mat-card-subtitle>
+      <h2>{{product}}</h2>
+    </mat-card-subtitle>
+    <mat-card-title  > <b>
+        <h1 [class]="pprice.class.bnb">BNB</h1>
+      </b></mat-card-title>
+    <div>
+      <h2 [class]="pprice.class.bnb">{{BNB}}</h2>
+    </div>
+  </mat-card>
+  <hr *ngIf="submitted">
+  <mat-card elevation="5" fxFlex *ngIf="submitted">
+    <mat-card-subtitle>
+      <h2>{{product}}</h2>
+    </mat-card-subtitle>
+    <mat-card-title><b>
+        <h1 [class]="pprice.class.btx">BTX</h1>
+      </b></mat-card-title>
+    <div>
+      <h2 [class]="pprice.class.btx">{{BTX}}</h2>
+    </div>
+  </mat-card>
 </div>

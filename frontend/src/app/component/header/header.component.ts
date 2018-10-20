@@ -13,27 +13,12 @@ import { Router } from '@angular/router';
 export class HeaderComponent implements OnInit {
 
   constructor(
-    private userService: UserService,
-    private authService: AuthService,
-    private router: Router
   ) { }
 
   ngOnInit() {
   }
 
-  logout() {
-    this.authService.logout().subscribe(res => {
-      this.router.navigate(['/login']);
-    });
+  refresh() {
+    window.location.reload();
   }
-
-  hasSignedIn() {
-    return !!this.userService.currentUser;
-  }
-
-  userName() {
-    const user = this.userService.currentUser;
-    return user.firstname + ' ' + user.lastname;
-  }
-
 }

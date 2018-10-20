@@ -3,8 +3,9 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { DisplayMessage } from '../shared/models/display-message';
+import { ProductPrice } from '../shared/models/product-price';
 import { Subscription } from 'rxjs/Subscription';
-import {FormControl} from '@angular/forms';111
+import { FormControl } from '@angular/forms'; 111
 
 import {
   UserService,
@@ -23,26 +24,18 @@ import { Subject } from 'rxjs/Subject';
 })
 
 export class LoginComponent implements OnInit, OnDestroy {
-  title = 'Login';
-  githubLink = 'https://github.com/bfwg/angular-spring-starter';
   form: FormGroup;
-
   toppings = new FormControl();
   toppingList: string[] = null;
-
-  /**
-   * Boolean used in telling the UI
-   * that the form has been submitted
-   * and is awaiting a response
-   */
+  productResponse = {};
+  BFX = null;
+  BNB = null;
+  BTX = null;
+  product = null;
   submitted = false;
-
-  /**
-   * Notification message from received
-   * form request or router
-   */
+  showLoading = false;
   notification: DisplayMessage;
-
+  pprice: ProductPrice;
   returnUrl: string;
   private ngUnsubscribe: Subject<void> = new Subject<void>();
 
@@ -59,21 +52,16 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.showLoading = true;
     this.form = this.formBuilder.group({
-      //username: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(64)])],
-      password: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(32)])]
     });
 
     return this.apiService.get(this.config.products_url)
-    .delay(3000)
-    .subscribe(data =>  this.toppingList = data);
-    // this.route.params
-    // .takeUntil(this.ngUnsubscribe)
-    // .subscribe((params: DisplayMessage) => {
-    //   this.notification = params;
-    // });
-    // // get return url from route parameters or default to '/'
-    // this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+      .delay(2000)
+      .subscribe(data => {
+        this.showLoading = false;
+        this.toppingList = data;
+      });
   }
 
   ngOnDestroy() {
@@ -81,51 +69,70 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.ngUnsubscribe.complete();
   }
 
-  onResetCredentials() {
-    this.userService.resetCredentials()
-    .takeUntil(this.ngUnsubscribe)
-    .subscribe(res => {
-      if (res.result === 'success') {
-        alert('Password has been reset to 123 for all accounts');
-      } else {
-        alert('Server error');
-      }
-    });
-  }
-
-  repository() {
-    window.location.href = this.githubLink;
-  }
-
   onSubmit() {
-    console.dir(this.toppings.value);
-    this.router.navigate(['/', this.toppings.value]);
-    
-    
-    // return this.apiService.get(this.config.products_url)
-    // .delay(1000)
-    // .subscribe(data =>  this.toppingList = data);
-
-   // return this.apiService.get(this.config.products_url).map(data => this.toppingList = data);
-    // /**
-    //  * Innocent until proven guilty
-    //  */
-    // this.notification = undefined;
-    // this.submitted = true;
-
-    // this.authService.login(this.form.value)
-    // // show me the animation
-    // .delay(1000)
-    // .subscribe(data => {
-    //   this.userService.getMyInfo().subscribe();
-    //   this.router.navigate([this.returnUrl]);
-    // },
-    // error => {
-    //   this.submitted = false;
-    //   this.notification = { msgType: 'error', msgBody: 'Incorrect username or password.' };
-    // });
-
+    return this.apiService.get(this.config.products_url + this.toppings.value + "/prices")
+      .subscribe(data => {
+        this.submitted = true;
+        this.BFX = data.BFX;
+        this.BNB = data.BNB;
+        this.BTX = data.BTX;
+        this.product = this.toppings.value;
+        this.determineMinMax(data);
+      },
+        error => {
+          this.notification = { msgType: 'info', msgBody: 'No result found for this product.' };
+        });
   }
 
+  private determineMinMax(data) {
+    this.pprice = {
+      class: {
+        bfx: "",
+        bnb: "",
+        btx: ""
+      },
+      value: {
+        bfx: data.BFX,
+        bnb: data.BFX,
+        btx: data.BFX
+      }
+    };
 
+    var arr = [];
+    arr.push(data.BFX);
+    arr.push(data.BNB);
+    arr.push(data.BTX);
+
+    let min = arr[0], max = arr[0];
+
+    for (let i = 1, len = arr.length; i < len; i++) {
+      let v = arr[i];
+      min = (v < min) ? v : min;
+      max = (v > max) ? v : max;
+    }
+
+    if (max == data.BFX) {
+      this.pprice.class.bfx = "ppgreen";
+    }
+
+    if (max == data.BNB) {
+      this.pprice.class.bnb = "ppgreen";
+    }
+
+    if (max == data.BTX) {
+      this.pprice.class.btx = "ppgreen";
+    }
+
+    if (min == data.BFX) {
+      this.pprice.class.bfx = "ppred";
+    }
+
+    if (min == data.BNB) {
+      this.pprice.class.bnb = "ppred";
+    }
+
+    if (min == data.BTX) {
+      this.pprice.class.btx = "ppred";
+    }
+  }
 }
