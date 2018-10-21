@@ -93,7 +93,7 @@ public class ProductServiceImpl implements ProductService {
 	
 	
 	private String callMoneedaAPI (String EXCHANGE, String endpoint) throws KeyManagementException, NoSuchAlgorithmException, KeyStoreException {
-		System.out.println("-------- "+ROOT_URL+EXCHANGE+endpoint);
+		System.out.println(ROOT_URL+EXCHANGE+endpoint);
 		
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);

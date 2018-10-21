@@ -35,7 +35,7 @@ public class ProductController {
 				pList = productData.getProductList();
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			//TODO error handling
 		}
 		return ResponseEntity.accepted().body(pList);
 	  }
@@ -45,15 +45,13 @@ public class ProductController {
 			  @PathVariable(value="product") String product) {
 		HashMap<String, BigDecimal> pList = new HashMap<String, BigDecimal>();	
 		try {
-			System.out.println(product);
-			System.out.println(productData.getPriceList().keySet());
 			if(null == productData.getPriceList()) {
 				pList = productService.getPricesPerProduct(product);
 			} else {
 				pList = productData.getPriceList().get(product);
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			//TODO error handling
 		}
 	    return ResponseEntity.accepted().body(pList);
 	  }
