@@ -1,5 +1,8 @@
 # Crypto Tracker Project
 
+![alt text](https://raw.githubusercontent.com/micflib/images/master/product.png)   
+![alt text](https://raw.githubusercontent.com/micflib/images/master/price.png)
+
 ## Technologies
 * Java
 * Spring Boot
@@ -76,6 +79,4 @@ mvn spring-boot:run
 # the fronend angular app will be running on port 4200
 # the spring-boot server will be running on port 8080
 ```
-
-
 #### Disclaimer: I do not own the basecode. Basecode copied from spring boot starter-package (with angular)
