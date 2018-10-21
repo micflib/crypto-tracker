@@ -14,34 +14,8 @@ import { SignupComponent } from './signup';
 export const routes: Routes = [
   {
     path: '',
-    component: HomeComponent,
-    pathMatch: 'full'
-  },
-  {
-    path:'signup',
-    component: SignupComponent,
-    canActivate: [GuestGuard],
-    pathMatch:'full'
-  },
-  {
-    path: 'login',
     component: LoginComponent,
-    canActivate: [GuestGuard]
-  },
-  {
-    path: ':product',
-    component: HomeComponent,
     pathMatch: 'full'
-  },
-  {
-    path: 'change-password',
-    component: ChangePasswordComponent,
-    canActivate: [LoginGuard]
-  },
-  {
-    path: 'admin',
-    component: AdminComponent,
-    canActivate: [AdminGuard]
   },
   {
     path: '404',
