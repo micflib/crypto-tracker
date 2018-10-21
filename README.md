@@ -1,4 +1,6 @@
 # Crypto Tracker Project
+A simple crypto tracker application (backend + frontend) that works
+with Moneeda API.
 
 ![alt text](https://raw.githubusercontent.com/micflib/images/master/product.png)   
 ![alt text](https://raw.githubusercontent.com/micflib/images/master/price.png)
